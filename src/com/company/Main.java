@@ -39,21 +39,36 @@ public class Main {
                 }
             }}
 
-            System.out.println("Cool!");
+        System.out.println("Cool!");
+        double mitInfl = start;
+        double perYear = monthly *12;
 
-            for(int i = 0; i < t; i++ ){
-                start = (start + monthly*12)+((start + monthly*12)*(rate/100));
-                System.out.println((i+1)+ ". Jahr: "+beautify(start)+"€");
-            }
+        double inflationRate = rate-inflation;
+        inflationRate = inflationRate/100 +1;
 
-            inflation = (inflation/100)*t;
-            double realValue = start - (start* inflation);
-
-            String resultB = beautify(start);
-            String realValueB = beautify(realValue);
+        rate = rate/100+1;
 
 
-            System.out.println("Nach "+t+" Jahren haben Sie "+ resultB +"€, aber nur mit einer Kaufkraft wie "+ realValueB+"€ heutzutage.");
+
+
+        for(int i = 0; i < t; i++ ){
+            start = (start + perYear)*rate;
+            System.out.println((i+1)+ ". Jahr: "+beautify(start)+"€");
+        }
+
+        for(int i = 0; i < t; i++ ){
+            mitInfl = (mitInfl + perYear)*inflationRate;
+        }
+
+
+
+
+
+        String resultB = beautify(start);
+        String realValueB = beautify(mitInfl);
+
+
+        System.out.println("Nach "+t+" Jahren haben Sie "+ resultB +"€, aber nur mit einer Kaufkraft wie "+ realValueB+"€ heutzutage.");
 
 
 
