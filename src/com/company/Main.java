@@ -10,41 +10,40 @@ public class Main {
         int t = 0;
 
         while (!correct) {
-            System.out.println("Starting amount:");
+            System.out.println("Anfangskapital:");
             start = scan.nextDouble();
-            System.out.println("Monthly disposal:");
+            System.out.println("monatliche Sparrate:");
             monthly = scan.nextDouble();
-            System.out.println("Interest rate(p.a. in %):");
+            System.out.println("Zinsen/Rendite p.a.:");
             rate = scan.nextDouble();
-            System.out.println("Inflation(p.a. in %):");
+            System.out.println("erwartete durchscnittliche Inflation p.a.:");
             inflation = scan.nextDouble();
-            System.out.println("Years:");
+            System.out.println("Laufzeit in Jahren:");
             t = scan.nextInt();
             String startB = beautify(start);
             String monthlyB = beautify(monthly);
-            System.out.println("Starting amount: " + startB + "€\nMonthly disposal: " + monthlyB + "€\nInterest rate: " + Math.round(rate)+ "%\nInflation: "+ Math.round(inflation)+"%\nYears: "+t);
+            System.out.println("Anfangskapital: " + startB + "€\nmonatliche Sparrate: " + monthlyB + "€\nZinsen/Rendite p.a.: " + Math.round(rate)+ "%\nInflation: "+ Math.round(inflation)+"%\nLaufzeit in Jahren: "+t);
 
             boolean answered = false;
             while (!answered) {
-                System.out.println("Correct? (Y|N)");
+                System.out.println("Korrekt? (J|N)");
                 String ans = scan.next();
                 ans = ans.toLowerCase();
-                if (ans.equals("y")) {
+                if (ans.equals("j")) {
                     answered = true;
                     correct = true;
                 }
                 if (ans.equals("n")) {
-                    System.out.println("Sad! Then try again!");
+                    System.out.println("Dann nochmal!");
                     answered = true;
                 }
             }}
 
             System.out.println("Cool!");
-            // A = P(1+(r/n))^(n*t)
-            //double x = start * Math.pow((1+(rate/1)), (1*t));
+
             for(int i = 0; i < t; i++ ){
                 start = (start + monthly*12)+((start + monthly*12)*(rate/100));
-                System.out.println((i+1)+ ". Year: "+beautify(start)+"€");
+                System.out.println((i+1)+ ". Jahr: "+beautify(start)+"€");
             }
 
             inflation = (inflation/100)*t;
@@ -54,23 +53,24 @@ public class Main {
             String realValueB = beautify(realValue);
 
 
-            System.out.println("After "+t+" years you will have "+ resultB +"€ but it will be worth just like "+ realValueB+"€ today.");
+            System.out.println("Nach "+t+" Jahren haben Sie "+ resultB +"€, aber nur mit einer Kaufkraft wie "+ realValueB+"€ heutzutage.");
 
 
 
 
     }
 
+
     public static String beautify(double num){
         int numInt = (int) num;
-        String x = Integer.toString(numInt);
-        if(x.length() > 3){
-            x = new StringBuilder(x).insert(x.length()-3, ".").toString();
+        String s = Integer.toString(numInt);
+        if(s.length() > 3){
+            s = new StringBuilder(s).insert(s.length()-3, ".").toString();
         }
-        if(x.length() > 7){
-            x = new StringBuilder(x).insert(x.length()-7, ".").toString();
+        if(s.length() > 7){
+            s = new StringBuilder(s).insert(s.length()-7, ".").toString();
         }
 
-        return x;
+        return s;
     }
 }
