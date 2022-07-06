@@ -70,11 +70,10 @@ public class Main {
 
         System.out.println("Nach "+t+" Jahren haben Sie "+ resultB +"€, aber nur mit einer Kaufkraft wie "+ realValueB+"€ heutzutage.");
 
-
-
+        System.out.print("Enter drücken zum beenden");
+        String a= scan.next();
 
     }
-
 
     public static String beautify(double num){
         int numInt = (int) num;
